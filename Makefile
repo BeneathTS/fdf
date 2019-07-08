@@ -1,12 +1,24 @@
 NAME = fdf
 
-SRCS = fdf.c
+SRCS =	sources/fdf.c \
+		sources/reader.c \
+		sources/matrix_controls.c \
+		sources/ft_draw.c \
+		sources/init.c \
+		sources/hooks.c \
+		sources/key_controls.c \
+		sources/utils.c \
+		#sources/converter.c \
+
+L_LIB = libft/libft.a
 
 I_LIB = -I libft/includes
 
 L_MLX = -L /usr/local/lib
 
 I_MLX = -I /usr/local/include
+
+I_FDF = -I sources/includes/
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -17,7 +29,7 @@ MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): lib $(SRCS)
-	gcc $(CFLAGS) $(SRCS) $(L_MLX) $(I_LIB) $(I_MLX) $(MLXFLAGS) -o $(NAME)
+	gcc $(CFLAGS) $(SRCS) $(L_LIB) $(L_MLX) $(I_FDF) $(I_LIB) $(I_MLX) $(MLXFLAGS) -o $(NAME)
 
 lib:
 	@make -C libft/

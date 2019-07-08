@@ -15,9 +15,9 @@
 
 # include <stdlib.h>
 # include <fcntl.h>
-# include "libft/libft.h"
+# include "libft.h"
 
-# define BUFF_SIZE 64
+# define BUFF_SIZE 2
 
 # define ERROR -1
 # define SUCCESS 1
