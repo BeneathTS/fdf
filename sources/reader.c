@@ -51,6 +51,7 @@ static void ft_convert(char *line, t_fdf *fdf)
 	ct = -1;
 	while (splitted[++ct])
 	{
+		fdf->map.width = ct;
 		get_values(splitted[ct], fdf);
 		free(splitted[ct]);
 	}
@@ -64,6 +65,7 @@ static void ft_writer(int fd, t_fdf *fdf)
 
 	while ((status = get_next_line(fd, &line)) == READING)
 	{
+		fdf->map.height++;
 		ft_convert (line, fdf);
 		free(line);
 	}
@@ -81,5 +83,4 @@ void ft_reader(int argc, char **argv, t_fdf *fdf)
 		exit(ERROR);
 	}
 	ft_writer(fd, fdf);
-	fdf->wndw_nm = FILE_NAME;
 }

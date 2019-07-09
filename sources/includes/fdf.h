@@ -33,10 +33,18 @@ typedef struct		s_point
 	struct s_point	*prev;
 }					t_point;
 
+typedef struct		s_e_point
+{
+	int				x;
+	int				y;
+	int				z;
+}					t_e_point;
+
 typedef struct		s_map
 {
 	int				width;
 	int				height;
+	t_e_point		e_point;
 	t_point			*point;
 }					t_map;
 
@@ -58,7 +66,6 @@ typedef struct		s_fdf
 	void			*win;
 	void			*img;
 	char 			*data_addr;
-	char			*wndw_nm;
 	int				bts_pr_pxl;
 	int				sz_ln;
 	int				endian;
@@ -76,4 +83,5 @@ void				init_key_hooks(t_fdf *fdf);
 int					move(int key, t_fdf *fdf);
 int					zoom(int key, t_fdf *fdf);
 int					read_color(char *line);
+int					converter(int x, int y, t_fdf *fdf);
 #endif
