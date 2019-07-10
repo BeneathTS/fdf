@@ -1,9 +1,9 @@
 #include "fdf.h"
 
-/*static void ft_draw_line()
-{
-
-}*/
+// static void ft_draw_line()
+// {
+//
+// }
 
 static void set_point_to_addr(t_fdf *fdf)
 {

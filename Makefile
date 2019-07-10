@@ -8,7 +8,7 @@ SRCS =	sources/fdf.c \
 		sources/hooks.c \
 		sources/key_controls.c \
 		sources/utils.c \
-		#sources/converter.c \
+		sources/converter.c \
 
 L_LIB = libft/libft.a
 
