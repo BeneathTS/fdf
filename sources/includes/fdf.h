@@ -27,6 +27,8 @@
 
 typedef struct		s_point
 {
+	int				x;
+	int				y;
 	int				z;
 	int				color;
 	struct s_point	*next;
@@ -83,5 +85,5 @@ void				init_key_hooks(t_fdf *fdf);
 int					move(int key, t_fdf *fdf);
 int					zoom(int key, t_fdf *fdf);
 int					read_color(char *line);
-int					converter(int x, int y, t_fdf *fdf);
+int					converter(t_fdf *fdf);
 #endif

@@ -18,7 +18,7 @@ static void check_file_format_n_args(int ct, char **argv)
 	}
 }
 
-static void get_values(char *line, t_fdf *fdf)
+static void get_values(char *line, t_fdf *fdf, int x, int y)
 {
 	char **splitted;
 
@@ -30,6 +30,8 @@ static void get_values(char *line, t_fdf *fdf)
 		fdf->map.point->next = new_point(fdf->map.point);
 		fdf->map.point = fdf->map.point->next;
 	}
+	fdf->map.point->x = x;
+	fdf->map.point->y = y;
 	fdf->map.point->z = ft_atoi(splitted[0]);
 	free(splitted[0]);
 	if(splitted[1])
@@ -42,7 +44,7 @@ static void get_values(char *line, t_fdf *fdf)
 	free(splitted);
 }
 
-static void ft_convert(char *line, t_fdf *fdf)
+static void ft_convert(char *line, t_fdf *fdf, int y)
 {
 	int ct;
 	char **splitted;
@@ -52,7 +54,7 @@ static void ft_convert(char *line, t_fdf *fdf)
 	while (splitted[++ct])
 	{
 		fdf->map.width = ct;
-		get_values(splitted[ct], fdf);
+		get_values(splitted[ct], fdf, ct, y);
 		free(splitted[ct]);
 	}
 	free(splitted);
@@ -62,11 +64,13 @@ static void ft_writer(int fd, t_fdf *fdf)
 {
 	int status;
 	char *line;
+	int y;
 
+	y = 0;
 	while ((status = get_next_line(fd, &line)) == READING)
 	{
-		fdf->map.height++;
-		ft_convert (line, fdf);
+		++fdf->map.height;
+		ft_convert(line, fdf, y++);
 		free(line);
 	}
 	free(line);
