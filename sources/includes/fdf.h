@@ -19,6 +19,7 @@
 # define FILE_NAME argv[1]
 
 # define ISO 1
+# define PARAL 0
 
 # define WHITE 0xFFFFFF
 
@@ -84,6 +85,7 @@ void				ft_draw(t_fdf *fdf);
 void				init_key_hooks(t_fdf *fdf);
 int					move(int key, t_fdf *fdf);
 int					zoom(int key, t_fdf *fdf);
+int					change_projection(int key, t_fdf *fdf);
 int					read_color(char *line);
 int					converter(t_fdf *fdf);
 #endif

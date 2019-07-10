@@ -14,6 +14,8 @@ int key_controls(int key, t_fdf *fdf)
 	else if (key == KB_ARR_RIGHT || key == KB_ARR_LEFT ||
 		key == KB_ARR_UP || key == KB_ARR_DOWN)
 		move(key, fdf);
+	else if (key == KB_KEY_I || key == KB_KEY_P)
+		change_projection(key, fdf);
 	return (0);
 }
 

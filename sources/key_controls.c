@@ -18,12 +18,22 @@ int move(int key, t_fdf *fdf)
 {
 	if (key == KB_ARR_LEFT)
 		fdf->cam.x_offset -= 15;
-	if (key == KB_ARR_RIGHT)
+	else if (key == KB_ARR_RIGHT)
 		fdf->cam.x_offset += 15;
-	if (key == KB_ARR_UP)
+	else if (key == KB_ARR_UP)
 		fdf->cam.y_offset -= 15;
-	if (key == KB_ARR_DOWN)
+	else if (key == KB_ARR_DOWN)
 		fdf->cam.y_offset += 15;
+	ft_draw(fdf);
+	return (0);
+}
+
+int change_projection(int key, t_fdf *fdf)
+{
+	if (key == KB_KEY_I)
+		fdf->cam.prj = ISO;
+	else if (key == KB_KEY_P)
+		fdf->cam.prj = PARAL;
 	ft_draw(fdf);
 	return (0);
 }

@@ -12,4 +12,7 @@
 # define KB_ARR_UP 126
 # define KB_ARR_DOWN 125
 
+# define KB_KEY_I 34
+# define KB_KEY_P 35
+
 #endif
