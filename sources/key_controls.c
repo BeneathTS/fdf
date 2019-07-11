@@ -37,3 +37,13 @@ int change_projection(int key, t_fdf *fdf)
 	ft_draw(fdf);
 	return (0);
 }
+
+int change_z(int key, t_fdf *fdf)
+{
+	if (key == KB_KEY_Z_PLS)
+		fdf->cam.z_offset++;
+	else if (key == KB_KEY_Z_MNS)
+		fdf->cam.z_offset--;
+	ft_draw(fdf);
+	return (0);
+}

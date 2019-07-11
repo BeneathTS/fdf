@@ -51,6 +51,19 @@ typedef struct		s_map
 	t_point			*point;
 }					t_map;
 
+typedef struct		s_drw_ln
+{
+	int dx;
+	int x0;
+	int y0;
+	int x1;
+	int y1;
+	int dy;
+	int prim;
+	double f;
+	double f1;
+}					t_drw_ln;
+
 typedef struct		s_camera
 {
 	char			prj;
@@ -59,6 +72,7 @@ typedef struct		s_camera
 	int				angle_y;
 	int				angle_z;
 	int				alpha;
+	long long int	z_offset;
 	long long int	x_offset;
 	long long int 	y_offset;
 }					t_camera;
@@ -87,5 +101,6 @@ int					move(int key, t_fdf *fdf);
 int					zoom(int key, t_fdf *fdf);
 int					change_projection(int key, t_fdf *fdf);
 int					read_color(char *line);
+int					change_z(int key, t_fdf *fdf);
 int					converter(t_fdf *fdf);
 #endif

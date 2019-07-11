@@ -15,4 +15,7 @@
 # define KB_KEY_I 34
 # define KB_KEY_P 35
 
+# define KB_KEY_Z_PLS 30
+# define KB_KEY_Z_MNS 33
+
 #endif

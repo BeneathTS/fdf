@@ -14,6 +14,8 @@ int read_color(char *line)
 			num |= ((0x0 + (line[ct] - '0')) & ~num) << (4 * (7 - ct));
 		else if ((line[ct] >= 'A' && line[ct] <= 'F') && ct < 8)
 			num |= ((0xA + (line[ct] - 'A')) & ~num) << (4 * (7 - ct));
+		else if ((line[ct] >= 'a' && line[ct] <= 'f') && ct < 8)
+			num |= ((0xA + (line[ct] - 'a')) & ~num) << (4 * (7 - ct));
 		else if (ct > 7 && line[ct])
 			return (WHITE);
 	return (num);

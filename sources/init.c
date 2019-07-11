@@ -6,6 +6,7 @@ void ft_init(t_fdf *fdf)
 	fdf->cam.prj = ISO;
 	fdf->cam.x_offset = WIDTH / 4;
 	fdf->cam.y_offset = HEIGHT / 4;
+	fdf->cam.z_offset = 5;
 	fdf->map.point = NULL;
 	fdf->map.width = 0;
 	fdf->map.height = 0;

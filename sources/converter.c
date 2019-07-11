@@ -19,5 +19,12 @@ int converter(t_fdf *fdf)
 		iso(fdf, fdf->map.e_point.x, fdf->map.e_point.y);
 	fdf->map.e_point.x += fdf->cam.x_offset;
 	fdf->map.e_point.y += fdf->cam.y_offset;
+	if (fdf->cam.prj != PARAL)
+	{
+		if (fdf->map.point->z > 0)
+			fdf->map.e_point.y -= ft_abs(fdf->map.point->z) * fdf->cam.z_offset;
+		else if (fdf->map.point->z < 0)
+			fdf->map.e_point.y += ft_abs(fdf->map.point->z) * fdf->cam.z_offset;
+	}
 	return (0);
 }
