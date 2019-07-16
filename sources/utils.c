@@ -20,3 +20,22 @@ int read_color(char *line)
 			return (WHITE);
 	return (num);
 }
+
+void get_values(char *line, t_fdf *fdf, int x, int y)
+{
+	char **splitted;
+
+	splitted = ft_strsplit(line, ',');
+
+	fdf->map->coords[y][x] = *new_coordinate(fdf);
+	fdf->map->coords[y][x].z = ft_atoi(splitted[0]);
+	free(splitted[0]);
+	if(splitted[1])
+	{
+		fdf->map->coords[y][x].color = read_color(splitted[1]);
+		free(splitted[1]);
+	}
+	else
+		fdf->map->coords[y][x].color = WHITE;
+	free(splitted);
+}

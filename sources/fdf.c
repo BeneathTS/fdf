@@ -4,8 +4,9 @@ int main(int argc, char **argv)
 {
 	t_fdf	fdf;
 
-	ft_init(&fdf);
-	ft_reader(argc, argv, &fdf);
+	fdf_init(&fdf);
+	read_map(argc, argv, &fdf);
+	get_coordinates(argv, &fdf);
 	ft_draw(&fdf);
 	init_key_hooks(&fdf);
 	mlx_loop(fdf.mlx);
