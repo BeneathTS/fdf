@@ -54,11 +54,6 @@ typedef struct		s_draw
 {
 	int				x;
 	int				y;
-	int				dx;
-	int				dy;
-	int				prm;
-	int				nt_prm;
-	double			f[2];
 	t_e_point		*strt;
 	t_e_point		*fnsh;
 }					t_draw;
