@@ -18,33 +18,7 @@ static void check_file_format_n_args(int ct, char **argv)
 	}
 }
 
-static void get_values(char *line, t_fdf *fdf, int x, int y)
-{
-	char **splitted;
-
-	splitted = ft_strsplit(line, ',');
-	if (!fdf->map.point)
-		fdf->map.point = new_point(fdf->map.point);
-	else
-	{
-		fdf->map.point->next = new_point(fdf->map.point);
-		fdf->map.point = fdf->map.point->next;
-	}
-	fdf->map.point->x = x;
-	fdf->map.point->y = y;
-	fdf->map.point->z = ft_atoi(splitted[0]);
-	free(splitted[0]);
-	if(splitted[1])
-	{
-		fdf->map.point->color = read_color(splitted[1]);
-		free(splitted[1]);
-	}
-	else
-		fdf->map.point->color = WHITE;
-	free(splitted);
-}
-
-static void ft_convert(char *line, t_fdf *fdf, int y)
+static void ft_convert(char *line, t_fdf *fdf)
 {
 	int ct;
 	char **splitted;
@@ -53,8 +27,8 @@ static void ft_convert(char *line, t_fdf *fdf, int y)
 	ct = -1;
 	while (splitted[++ct])
 	{
-		fdf->map.width = ct;
-		get_values(splitted[ct], fdf, ct, y);
+		if (fdf->map->width <= ct)
+			++fdf->map->width;
 		free(splitted[ct]);
 	}
 	free(splitted);
@@ -64,19 +38,17 @@ static void ft_writer(int fd, t_fdf *fdf)
 {
 	int status;
 	char *line;
-	int y;
 
-	y = 0;
 	while ((status = get_next_line(fd, &line)) == READING)
 	{
-		++fdf->map.height;
-		ft_convert(line, fdf, y++);
+		++fdf->map->height;
+		ft_convert(line, fdf);
 		free(line);
 	}
 	free(line);
 }
 
-void ft_reader(int argc, char **argv, t_fdf *fdf)
+void read_map(int argc, char **argv, t_fdf *fdf)
 {
 	int fd;
 
@@ -87,4 +59,5 @@ void ft_reader(int argc, char **argv, t_fdf *fdf)
 		exit(ERROR);
 	}
 	ft_writer(fd, fdf);
+	close(fd);
 }

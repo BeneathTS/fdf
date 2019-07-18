@@ -1,14 +1,15 @@
 NAME = fdf
 
 SRCS =	sources/fdf.c \
-		sources/reader.c \
-		sources/matrix_controls.c \
+		sources/read_map.c \
 		sources/ft_draw.c \
 		sources/init.c \
 		sources/hooks.c \
 		sources/key_controls.c \
-		sources/utils.c \
+		sources/color.c \
+		sources/get_coordinates.c \
 		sources/converter.c \
+
 
 L_LIB = libft/libft.a
 
