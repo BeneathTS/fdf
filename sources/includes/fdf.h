@@ -26,6 +26,7 @@
 # define BRSH 2
 
 # define WHITE 0xFFFFFF
+# define GREEN 0x00FF00
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -96,6 +97,7 @@ void				ft_draw(t_fdf *fdf);
 void				init_key_hooks(t_fdf *fdf);
 int					move(int key, t_fdf *fdf);
 int					zoom(int key, t_fdf *fdf);
+// int					change_color(int key, t_fdf *fdf);
 int					change_projection(int key, t_fdf *fdf);
 int					read_color(char *line);
 int					change_z(int key, t_fdf *fdf);

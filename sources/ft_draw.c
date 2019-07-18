@@ -7,10 +7,20 @@ static void set_point_to_addr(t_fdf *fdf, int e_x, int e_y, int x, int y)
 	if (e_x >= 0 && e_x < WIDTH && e_y >= 0 && e_y < HEIGHT)
 	{
 		ct = (e_x * (fdf->bts_pr_pxl / 8)) + (e_y * fdf->sz_ln);
-		fdf->data_addr[ct] = fdf->map->coords[y][x].color;
-		fdf->data_addr[++ct] = fdf->map->coords[y][x].color >> 8;
-		fdf->data_addr[++ct] = fdf->map->coords[y][x].color >> 16;
-		fdf->data_addr[++ct] = 0;
+		if (fdf->map->coords[y][x].color > 0)
+		{
+			fdf->data_addr[ct] = fdf->map->coords[y][x].color;
+			fdf->data_addr[++ct] = fdf->map->coords[y][x].color >> 8;
+			fdf->data_addr[++ct] = fdf->map->coords[y][x].color >> 16;
+			fdf->data_addr[++ct] = 0;
+		}
+		else
+		{
+			fdf->data_addr[ct] = fdf->cam->std_color;
+			fdf->data_addr[++ct] = fdf->cam->std_color >> 8;
+			fdf->data_addr[++ct] = fdf->cam->std_color >> 16;
+			fdf->data_addr[++ct] = 0;
+		}
 	}
 }
 

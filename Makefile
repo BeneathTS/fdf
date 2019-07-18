@@ -6,7 +6,7 @@ SRCS =	sources/fdf.c \
 		sources/init.c \
 		sources/hooks.c \
 		sources/key_controls.c \
-		sources/utils.c \
+		sources/color.c \
 		sources/get_coordinates.c \
 		sources/converter.c \
 

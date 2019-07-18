@@ -11,13 +11,15 @@ int key_controls(int key, t_fdf *fdf)
 	if (key == KB_NUM_PLUS || key == KB_NUM_MINUS ||
 	key == KB_STD_PLUS || key == KB_STD_MINUS)
 		zoom(key, fdf);
-	else if (key == KB_ARR_RIGHT || key == KB_ARR_LEFT ||
-		key == KB_ARR_UP || key == KB_ARR_DOWN)
+	else if (key == KB_KEY_RIGHT || key == KB_KEY_LEFT ||
+		key == KB_KEY_UP || key == KB_KEY_DOWN)
 		move(key, fdf);
 	else if (key == KB_KEY_I || key == KB_KEY_P)
 		change_projection(key, fdf);
 	else if (key == KB_KEY_Z_PLS || key == KB_KEY_Z_MNS)
 		change_z(key, fdf);
+	// else if (key == KB_KEY_ARR_RIGHT || key == KB_KEY_ARR_LEFT)
+	// 	change_color(key, fdf);
 	return (0);
 }
 

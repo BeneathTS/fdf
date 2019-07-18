@@ -16,13 +16,13 @@ int zoom(int key, t_fdf *fdf)
 
 int move(int key, t_fdf *fdf)
 {
-	if (key == KB_ARR_LEFT)
+	if (key == KB_KEY_LEFT)
 		fdf->cam->x_offset -= 15;
-	else if (key == KB_ARR_RIGHT)
+	else if (key == KB_KEY_RIGHT)
 		fdf->cam->x_offset += 15;
-	else if (key == KB_ARR_UP)
+	else if (key == KB_KEY_UP)
 		fdf->cam->y_offset -= 15;
-	else if (key == KB_ARR_DOWN)
+	else if (key == KB_KEY_DOWN)
 		fdf->cam->y_offset += 15;
 	ft_draw(fdf);
 	return (0);
@@ -47,3 +47,13 @@ int change_z(int key, t_fdf *fdf)
 	ft_draw(fdf);
 	return (0);
 }
+
+// int change_color(int key, t_fdf *fdf)
+// {
+// 	if (key == KB_KEY_ARR_RIGHT)
+// 		fdf->cam->std_color++;
+// 	else if (key == KB_KEY_ARR_LEFT)
+// 		fdf->cam->std_color--;
+// 	ft_draw(fdf);
+// 	return(0);
+// }
