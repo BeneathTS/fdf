@@ -45,15 +45,15 @@ static void ft_draw_map(t_fdf *fdf)
 {
 	if (fdf->draw->x + 1 < fdf->map->width)
 	{
-		fdf->draw->strt = converter(fdf, fdf->draw->x, fdf->draw->y);
-		fdf->draw->fnsh = converter(fdf, fdf->draw->x + 1, fdf->draw->y);
-		bresenham_algo(fdf, *fdf->draw->strt, *fdf->draw->fnsh, fdf->draw->x, fdf->draw->y);
+		converter(fdf, &fdf->draw->strt ,fdf->draw->x, fdf->draw->y);
+		converter(fdf, &fdf->draw->fnsh, fdf->draw->x + 1, fdf->draw->y);
+		bresenham_algo(fdf, fdf->draw->strt, fdf->draw->fnsh, fdf->draw->x, fdf->draw->y);
 	}
 	if (fdf->draw->y + 1 < fdf->map->height)
 	{
-		fdf->draw->strt = converter(fdf, fdf->draw->x, fdf->draw->y);
-		fdf->draw->fnsh = converter(fdf, fdf->draw->x, fdf->draw->y + 1);
-		bresenham_algo(fdf, *fdf->draw->strt, *fdf->draw->fnsh, fdf->draw->x, fdf->draw->y);
+		converter(fdf, &fdf->draw->strt ,fdf->draw->x, fdf->draw->y);
+		converter(fdf, &fdf->draw->fnsh, fdf->draw->x, fdf->draw->y + 1);
+		bresenham_algo(fdf, fdf->draw->strt, fdf->draw->fnsh, fdf->draw->x, fdf->draw->y);
 	}
 }
 

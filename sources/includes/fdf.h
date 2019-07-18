@@ -54,8 +54,8 @@ typedef struct		s_draw
 {
 	int				x;
 	int				y;
-	t_e_point		*strt;
-	t_e_point		*fnsh;
+	t_e_point		strt;
+	t_e_point		fnsh;
 }					t_draw;
 
 typedef struct		s_camera
@@ -99,7 +99,7 @@ int					zoom(int key, t_fdf *fdf);
 int					change_projection(int key, t_fdf *fdf);
 int					read_color(char *line);
 int					change_z(int key, t_fdf *fdf);
-t_e_point			*converter(t_fdf *fdf, int x, int y);
+void				converter(t_fdf *fdf, t_e_point *e_point, int x, int y);
 void				get_coordinates(char **argv, t_fdf *fdf);
 void				get_values(char *line, t_fdf *fdf, int x, int y);
 #endif

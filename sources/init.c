@@ -15,7 +15,7 @@ static t_camera *cam_init()
 	cam->zoom = 20;
 	cam->x_offset = WIDTH / 2;
 	cam->y_offset = HEIGHT / 2;
-	cam->z_offset = 5;
+	cam->z_offset = 1;
 	return (cam);
 }
 
