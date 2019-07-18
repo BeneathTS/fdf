@@ -71,7 +71,7 @@ typedef struct		s_camera
 	long long int	zoom;
 	long long int	x_offset;
 	long long int 	y_offset;
-	long long int	z_offset;
+	double	z_offset;
 }					t_camera;
 
 typedef struct		s_fdf
