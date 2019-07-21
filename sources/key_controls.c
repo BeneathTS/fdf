@@ -34,6 +34,9 @@ void change_projection(int key, t_fdf *fdf)
 		fdf->cam->prj = ISO;
 	else if (key == KB_KEY_P)
 		fdf->cam->prj = PARAL;
+	fdf->cam->angle_x = 0;
+	fdf->cam->angle_y = 0;
+	fdf->cam->angle_z = 0;
 	ft_draw(fdf);
 }
 

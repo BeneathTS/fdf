@@ -51,27 +51,15 @@ typedef struct		s_draw
 	t_e_point		fnsh;
 }					t_draw;
 
-typedef struct		s_cntrls
-{
-	char			rght_prssd;
-	char			lft_prssd;
-	int				strt_x;
-	int				strt_y;
-	int				prev_x;
-	int				prev_y;
-}					t_cntrls;
-
 typedef struct		s_camera
 {
 	int				alpha;
-	int				angle_x;
-	int				angle_y;
-	int				angle_z;
+	float			angle_x;
+	float			angle_y;
+	float			angle_z;
 	int				algo_type;
 	int				std_color;
 	char			prj;
-	int				zm_x;
-	int				zm_y;
 	long long int	zoom;
 	long long int	x_offset;
 	long long int 	y_offset;
@@ -112,4 +100,7 @@ void				change_z(int key, t_fdf *fdf);
 void				mouse_move(int x, int y, t_fdf *fdf);
 void				move(int key, t_fdf *fdf);
 void				zoom(int key, t_fdf *fdf);
+void				rotate(int key, t_fdf *fdf);
+
+void				mouse_rotate(int x, int y, t_fdf *fdf);
 #endif

@@ -12,12 +12,10 @@ static t_camera *cam_init()
 	cam->algo_type = BRSH;
 	cam->std_color = WHITE;
 	cam->prj = ISO;
-	cam->zm_x = 0;
-	cam->zm_y = 0;
 	cam->zoom = 20;
 	cam->x_offset = WIDTH / 2;
 	cam->y_offset = HEIGHT / 2;
-	cam->z_offset = 10;
+	cam->z_offset = 1;
 	return (cam);
 }
 
