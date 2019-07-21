@@ -12,6 +12,8 @@ static t_camera *cam_init()
 	cam->algo_type = BRSH;
 	cam->std_color = WHITE;
 	cam->prj = ISO;
+	cam->zm_x = 0;
+	cam->zm_y = 0;
 	cam->zoom = 20;
 	cam->x_offset = WIDTH / 2;
 	cam->y_offset = HEIGHT / 2;
@@ -37,11 +39,22 @@ static t_draw *draw_init()
 	return (draw);
 }
 
+static t_cntrls *cntrls_init()
+{
+	t_cntrls *cntrls;
+
+	cntrls = (t_cntrls*)malloc(sizeof(t_cntrls));
+	cntrls->rght_prssd = NO;
+	cntrls->lft_prssd = NO;
+	return (cntrls);
+}
+
 void fdf_init(t_fdf *fdf)
 {
 	fdf->map = map_init();
 	fdf->cam = cam_init();
 	fdf->draw = draw_init();
+	fdf->cntrls = cntrls_init();
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "fdf");
 	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);

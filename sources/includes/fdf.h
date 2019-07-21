@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include <string.h>
 
+# include "draw.h"
 # include "libft.h"
 # include "errors.h"
 # include "controls.h"
@@ -18,15 +19,6 @@
 # define READING 1
 
 # define FILE_NAME argv[1]
-
-# define ISO 1
-# define PARAL 0
-
-# define WU 1
-# define BRSH 2
-
-# define WHITE 0xFFFFFF
-# define GREEN 0x00FF00
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -59,6 +51,16 @@ typedef struct		s_draw
 	t_e_point		fnsh;
 }					t_draw;
 
+typedef struct		s_cntrls
+{
+	char			rght_prssd;
+	char			lft_prssd;
+	int				strt_x;
+	int				strt_y;
+	int				prev_x;
+	int				prev_y;
+}					t_cntrls;
+
 typedef struct		s_camera
 {
 	int				alpha;
@@ -68,10 +70,12 @@ typedef struct		s_camera
 	int				algo_type;
 	int				std_color;
 	char			prj;
+	int				zm_x;
+	int				zm_y;
 	long long int	zoom;
 	long long int	x_offset;
 	long long int 	y_offset;
-	double	z_offset;
+	float			z_offset;
 }					t_camera;
 
 typedef struct		s_fdf
@@ -86,6 +90,7 @@ typedef struct		s_fdf
 	t_map			*map;
 	t_draw			*draw;
 	t_camera		*cam;
+	t_cntrls		*cntrls;
 }					t_fdf;
 
 void				read_map(int argc, char **argv, t_fdf *fdf);
@@ -95,13 +100,16 @@ int					key_controls(int key, t_fdf *fdf);
 void				fdf_init(t_fdf *fdf);
 void				ft_draw(t_fdf *fdf);
 void				init_key_hooks(t_fdf *fdf);
-int					move(int key, t_fdf *fdf);
-int					zoom(int key, t_fdf *fdf);
-// int					change_color(int key, t_fdf *fdf);
-int					change_projection(int key, t_fdf *fdf);
 int					read_color(char *line);
-int					change_z(int key, t_fdf *fdf);
 void				converter(t_fdf *fdf, t_e_point *e_point, int x, int y);
 void				get_coordinates(char **argv, t_fdf *fdf);
 void				get_values(char *line, t_fdf *fdf, int x, int y);
+
+void				key_press(int button, int x, int y, t_fdf *fdf, char flag);
+void				change_color(int key, t_fdf *fdf);
+void				change_projection(int key, t_fdf *fdf);
+void				change_z(int key, t_fdf *fdf);
+void				mouse_move(int x, int y, t_fdf *fdf);
+void				move(int key, t_fdf *fdf);
+void				zoom(int key, t_fdf *fdf);
 #endif

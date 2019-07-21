@@ -1,20 +1,21 @@
 #include "fdf.h"
 
-int zoom(int key, t_fdf *fdf)
+void zoom(int key, t_fdf *fdf)
 {
 	if (key == KB_NUM_PLUS ||
-		key == KB_STD_PLUS)
+		key == KB_STD_PLUS ||
+		key == MS_SCRL_UP)
 		fdf->cam->zoom++;
 	else if (key == KB_NUM_MINUS ||
-		key == KB_STD_MINUS)
+		key == KB_STD_MINUS ||
+		key == MS_SCRL_DWN)
 		fdf->cam->zoom--;
 	if (fdf->cam->zoom < 1)
 		fdf->cam->zoom = 1;
 	ft_draw(fdf);
-	return (0);
 }
 
-int move(int key, t_fdf *fdf)
+void move(int key, t_fdf *fdf)
 {
 	if (key == KB_KEY_LEFT)
 		fdf->cam->x_offset -= 15;
@@ -25,20 +26,18 @@ int move(int key, t_fdf *fdf)
 	else if (key == KB_KEY_DOWN)
 		fdf->cam->y_offset += 15;
 	ft_draw(fdf);
-	return (0);
 }
 
-int change_projection(int key, t_fdf *fdf)
+void change_projection(int key, t_fdf *fdf)
 {
 	if (key == KB_KEY_I)
 		fdf->cam->prj = ISO;
 	else if (key == KB_KEY_P)
 		fdf->cam->prj = PARAL;
 	ft_draw(fdf);
-	return (0);
 }
 
-int change_z(int key, t_fdf *fdf)
+void change_z(int key, t_fdf *fdf)
 {
 	if (key == KB_KEY_Z_PLS)
 		fdf->cam->z_offset += 0.15;
@@ -49,15 +48,13 @@ int change_z(int key, t_fdf *fdf)
 	if (fdf->cam->z_offset <= 0)
 		fdf->cam->z_offset = 0.1;
 	ft_draw(fdf);
-	return (0);
 }
 
-// int change_color(int key, t_fdf *fdf)
-// {
-// 	if (key == KB_KEY_ARR_RIGHT)
-// 		fdf->cam->std_color++;
-// 	else if (key == KB_KEY_ARR_LEFT)
-// 		fdf->cam->std_color--;
-// 	ft_draw(fdf);
-// 	return(0);
-// }
+void change_color(int key, t_fdf *fdf)
+{
+	if (key == KB_KEY_ARR_RIGHT)
+		fdf->cam->std_color++;
+	else if (key == KB_KEY_ARR_LEFT)
+		fdf->cam->std_color--;
+	ft_draw(fdf);
+}
