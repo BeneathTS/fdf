@@ -9,6 +9,7 @@ SRCS =	sources/fdf.c \
 		sources/color.c \
 		sources/get_coordinates.c \
 		sources/converter.c \
+		sources/mouse_controls.c \
 
 
 L_LIB = libft/libft.a

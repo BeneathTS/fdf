@@ -1,6 +1,9 @@
 #ifndef CONTROLS_H
 # define CONTROLS_H
 
+# define YES 1
+# define NO 0
+
 # define KB_STD_PLUS 24
 # define KB_NUM_PLUS 69
 
@@ -20,5 +23,11 @@
 
 # define KB_KEY_ARR_LEFT 43
 # define KB_KEY_ARR_RIGHT 47
+
+# define MS_LFT_BTN 1
+# define MS_RGHT_BTN 2
+
+# define MS_SCRL_UP 5
+# define MS_SCRL_DWN 4
 
 #endif
