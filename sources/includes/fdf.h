@@ -23,49 +23,6 @@
 # define WIDTH 1280
 # define HEIGHT 720
 
-typedef struct		s_point
-{
-	int				z;
-	int				color;
-}					t_point;
-
-typedef struct		s_e_point
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_e_point;
-
-typedef struct		s_map
-{
-	int				width;
-	int				height;
-	t_point			**coords;
-}					t_map;
-
-typedef struct		s_draw
-{
-	int				x;
-	int				y;
-	t_e_point		strt;
-	t_e_point		fnsh;
-}					t_draw;
-
-typedef struct		s_camera
-{
-	int				alpha;
-	float			angle_x;
-	float			angle_y;
-	float			angle_z;
-	int				algo_type;
-	int				std_color;
-	char			prj;
-	long long int	zoom;
-	long long int	x_offset;
-	long long int 	y_offset;
-	float			z_offset;
-}					t_camera;
-
 typedef struct		s_fdf
 {
 	void			*mlx;
@@ -94,13 +51,18 @@ void				get_coordinates(char **argv, t_fdf *fdf);
 void				get_values(char *line, t_fdf *fdf, int x, int y);
 
 void				key_press(int button, int x, int y, t_fdf *fdf, char flag);
-void				change_color(int key, t_fdf *fdf);
+void				change_color(t_fdf *fdf);
 void				change_projection(int key, t_fdf *fdf);
 void				change_z(int key, t_fdf *fdf);
 void				mouse_move(int x, int y, t_fdf *fdf);
 void				move(int key, t_fdf *fdf);
 void				zoom(int key, t_fdf *fdf);
 void				rotate(int key, t_fdf *fdf);
-
 void				mouse_rotate(int x, int y, t_fdf *fdf);
+void				set_alpha(int key, t_fdf *fdf);
+
+void menu(t_fdf *fdf);
+void draw_menu(t_fdf *fdf);
+void set_point_to_addr(t_fdf *fdf, int e_x, int e_y, int color);
+// int fill_grad(int s_clr, int f_clr, int s_x, int f_x, int ct);
 #endif

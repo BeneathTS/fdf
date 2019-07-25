@@ -16,3 +16,12 @@ void rotate(int key, t_fdf *fdf)
 		fdf->cam->angle_z -= 0.05;
 	ft_draw(fdf);
 }
+
+void set_alpha(int key, t_fdf *fdf)
+{
+	if (key == KB_NUM_STR && fdf->cam->alpha)
+		fdf->cam->alpha -= 5;
+	if (key == KB_NUM_SLSH && fdf->cam->alpha != 0xFF)
+		fdf->cam->alpha += 5;
+	ft_draw(fdf);
+}

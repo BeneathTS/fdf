@@ -13,31 +13,31 @@ void iso(int *x, int *y, int z)
 
 void x_rotate (t_fdf *fdf, int *y, int *z)
 {
-	int prev_y;
+	int buf_y;
 
-	prev_y = *y;
-	*y = prev_y * cos(fdf->cam->angle_x) + *z *sin(fdf->cam->angle_x);
-	*z = -prev_y * sin(fdf->cam->angle_x) + *z *cos(fdf->cam->angle_x);
+	buf_y = *y;
+	*y = buf_y * cos(fdf->cam->angle_x) + *z *sin(fdf->cam->angle_x);
+	*z = -buf_y * sin(fdf->cam->angle_x) + *z *cos(fdf->cam->angle_x);
 }
 
 void y_rotate (t_fdf *fdf, int *x, int *z)
 {
-	int prev_x;
+	int buf_x;
 
-	prev_x = *x;
-	*x = prev_x * cos(fdf->cam->angle_y) + *z * sin(fdf->cam->angle_y);
-	*z = -prev_x * sin(fdf->cam->angle_y) + *z * cos(fdf->cam->angle_y);
+	buf_x = *x;
+	*x = buf_x * cos(fdf->cam->angle_y) + *z * sin(fdf->cam->angle_y);
+	*z = -buf_x * sin(fdf->cam->angle_y) + *z * cos(fdf->cam->angle_y);
 }
 
 void z_rotate (t_fdf *fdf, int *x, int *y)
 {
-	int prev_x;
-    int prev_y;
+	int buf_x;
+    int buf_y;
 
-    prev_x = *x;
-    prev_y = *y;
-	*x = prev_x * cos(fdf->cam->angle_z) - prev_y * sin(fdf->cam->angle_z);
-	*y = prev_x * sin(fdf->cam->angle_z) + prev_y * cos(fdf->cam->angle_z);
+    buf_x = *x;
+    buf_y = *y;
+	*x = buf_x * cos(fdf->cam->angle_z) - buf_y * sin(fdf->cam->angle_z);
+	*y = buf_x * sin(fdf->cam->angle_z) + buf_y * cos(fdf->cam->angle_z);
 }
 
 void converter(t_fdf *fdf, t_e_point *e_point, int x, int y)

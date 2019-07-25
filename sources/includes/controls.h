@@ -29,14 +29,20 @@
 # define KB_KEY_Z_PLS 33
 # define KB_KEY_Z_MNS 30
 
-# define KB_KEY_ARR_LEFT 43
-# define KB_KEY_ARR_RIGHT 47
+# define KB_KEY_C 8
 
 # define MS_LFT_BTN 1
 # define MS_RGHT_BTN 2
 
 # define MS_SCRL_UP 5
 # define MS_SCRL_DWN 4
+
+# define KB_NUM_SLSH 75
+# define KB_NUM_STR 67
+
+# define KB_STD_ESC 53
+
+# define KB_STD_F1 122
 
 typedef struct		s_cntrls
 {
@@ -46,6 +52,7 @@ typedef struct		s_cntrls
 	int				strt_y;
 	int				prev_x;
 	int				prev_y;
+	int				RGB;
 }					t_cntrls;
 
 #endif

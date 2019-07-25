@@ -4,11 +4,11 @@ void zoom(int key, t_fdf *fdf)
 {
 	if (key == KB_NUM_PLUS ||
 		key == KB_STD_PLUS ||
-		key == MS_SCRL_UP)
+		key == MS_SCRL_DWN)
 		fdf->cam->zoom++;
 	else if (key == KB_NUM_MINUS ||
 		key == KB_STD_MINUS ||
-		key == MS_SCRL_DWN)
+		key == MS_SCRL_UP)
 		fdf->cam->zoom--;
 	if (fdf->cam->zoom < 1)
 		fdf->cam->zoom = 1;
@@ -43,7 +43,7 @@ void change_projection(int key, t_fdf *fdf)
 void change_z(int key, t_fdf *fdf)
 {
 	if (key == KB_KEY_Z_PLS)
-		fdf->cam->z_offset += 0.15;
+		fdf->cam->z_offset += 0.3;
 	else if (key == KB_KEY_Z_MNS)
 		fdf->cam->z_offset -= 0.15;
 	if (fdf->cam->z_offset >= 20)
@@ -53,11 +53,19 @@ void change_z(int key, t_fdf *fdf)
 	ft_draw(fdf);
 }
 
-void change_color(int key, t_fdf *fdf)
+void change_color(t_fdf *fdf)
 {
-	if (key == KB_KEY_ARR_RIGHT)
-		fdf->cam->std_color++;
-	else if (key == KB_KEY_ARR_LEFT)
-		fdf->cam->std_color--;
+	if (fdf->cntrls->RGB == R && (fdf->cam->std_color >> 8) != 0xFF)
+		fdf->cam->std_color += ((fdf->cam->std_color & (0xFF << 8)) < (0xFF << 8) ? 0x000500 : -0x050000);
+	else if (fdf->cntrls->RGB == R && (fdf->cam->std_color >> 8) == 0xFF)
+		fdf->cntrls->RGB = G;
+	if (fdf->cntrls->RGB == G && fdf->cam->std_color != 0xFF)
+		fdf->cam->std_color += ((fdf->cam->std_color & 0xFF) < 0xFF ? 0x000005 : -0x000500);
+	else if (fdf->cntrls->RGB == G && fdf->cam->std_color == 0xFF)
+		fdf->cntrls->RGB = B;
+	if (fdf->cntrls->RGB == B && fdf->cam->std_color != (0xFF << 16))
+		fdf->cam->std_color += ((fdf->cam->std_color & (0xFF << 16)) < (0xFF << 16) ? 0x050000 : -0x000005);
+	else if (fdf->cntrls->RGB == B && fdf->cam->std_color == (0xFF << 16))
+		fdf->cntrls->RGB = R;
 	ft_draw(fdf);
 }

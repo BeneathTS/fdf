@@ -15,7 +15,8 @@ static t_camera *cam_init()
 	cam->zoom = 20;
 	cam->x_offset = WIDTH / 2;
 	cam->y_offset = HEIGHT / 2;
-	cam->z_offset = 1;
+	cam->z_offset = 5;
+	cam->menu = CLOSED;
 	return (cam);
 }
 
@@ -44,6 +45,7 @@ static t_cntrls *cntrls_init()
 	cntrls = (t_cntrls*)malloc(sizeof(t_cntrls));
 	cntrls->rght_prssd = NO;
 	cntrls->lft_prssd = NO;
+	cntrls->RGB = R;
 	return (cntrls);
 }
 

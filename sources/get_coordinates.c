@@ -5,8 +5,6 @@ t_point	*new_coordinate()
 	t_point *new;
 
 	new = (t_point*)malloc(sizeof(t_point));
-	new->z = 0;
-	new->color = WHITE;
 	return (new);
 }
 

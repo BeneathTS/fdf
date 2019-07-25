@@ -6,7 +6,7 @@ int read_color(char *line)
 	int num;
 
 	if (line[0] != '0' && line[1] != 'x')
-		return (ERROR);
+		return (EMPTY);
 	ct = 1;
 	num = 0x0;
 	while (line[++ct])
@@ -17,7 +17,7 @@ int read_color(char *line)
 		else if ((line[ct] >= 'a' && line[ct] <= 'f') && ct < 8)
 			num |= ((0xA + (line[ct] - 'a')) & ~num) << (4 * (7 - ct));
 		else if (ct > 7 && line[ct])
-			return (ERROR);
+			return (EMPTY);
 	return (num);
 }
 
@@ -36,6 +36,20 @@ void get_values(char *line, t_fdf *fdf, int x, int y)
 		free(splitted[1]);
 	}
 	else
-		fdf->map->coords[y][x].color = -1;
+		fdf->map->coords[y][x].color = EMPTY;
 	free(splitted);
 }
+
+// int fill_grad(int s_clr, int f_clr, int s_x int f_x, int ct)
+// {
+// 	int r;
+// 	int g;
+// 	int b;
+//
+// 	// x = (ct - s_x)/(f_x - s_x)
+//
+// 	r = (ct - s_x)/(f_x - s_x) * (s_clr & (0xFF >> 16) + (ct - s_x)/(f_x - s_x) * (f_clr & (0xFF >> 16));
+// 	g = (ct - s_x)/(f_x - s_x) * (s_clr & (0xFF >> 8)) + (ct - s_x)/(f_x - s_x) * (f_clr & (0xFF >> 8));
+// 	b = (ct - s_x)/(f_x - s_x) * (s_clr & 0xFF) + (ct - s_x)/(f_x - s_x) * (f_clr & 0xFF);
+// 	return ((r << 16) | (g << 8) | b);
+// }

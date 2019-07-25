@@ -11,6 +11,7 @@ SRCS =	sources/fdf.c \
 		sources/converter.c \
 		sources/mouse_controls.c \
 		sources/key_controls2.c \
+		sources/menu.c \
 
 
 L_LIB = libft/libft.a

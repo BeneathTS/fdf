@@ -8,30 +8,38 @@ static int x_close(void *param)
 
 int key_controls(int key, t_fdf *fdf)
 {
-	if (key == KB_NUM_PLUS || key == KB_NUM_MINUS ||
-		key == KB_STD_PLUS || key == KB_STD_MINUS)
+	if ((key == KB_NUM_PLUS || key == KB_NUM_MINUS ||
+		key == KB_STD_PLUS || key == KB_STD_MINUS) &&
+		fdf->cam->menu == CLOSED)
 		zoom(key, fdf);
-	if (key == KB_KEY_RIGHT || key == KB_KEY_LEFT ||
-		key == KB_KEY_UP || key == KB_KEY_DOWN)
+	if ((key == KB_KEY_RIGHT || key == KB_KEY_LEFT ||
+		key == KB_KEY_UP || key == KB_KEY_DOWN) &&
+		fdf->cam->menu == CLOSED)
 		move(key, fdf);
-	if (key == KB_KEY_I || key == KB_KEY_P)
+	if ((key == KB_KEY_I || key == KB_KEY_P) && fdf->cam->menu == CLOSED)
 		change_projection(key, fdf);
-	if (key == KB_KEY_Z_PLS || key == KB_KEY_Z_MNS)
+	if ((key == KB_KEY_Z_PLS || key == KB_KEY_Z_MNS) && fdf->cam->menu == CLOSED)
 		change_z(key, fdf);
-	if (key == KB_KEY_ARR_RIGHT || key == KB_KEY_ARR_LEFT)
-		change_color(key, fdf);
-	if (key == KB_NUM_4 || key == KB_NUM_6 ||
+	if (key == KB_KEY_C && fdf->cam->menu == CLOSED)
+		change_color(fdf);
+	if ((key == KB_NUM_4 || key == KB_NUM_6 ||
 		key == KB_NUM_8 || key == KB_NUM_5 ||
-		key == KB_NUM_7 || key == KB_NUM_9)
+		key == KB_NUM_7 || key == KB_NUM_9) && fdf->cam->menu == CLOSED)
 		rotate(key, fdf);
+	if ((key == KB_NUM_STR || key == KB_NUM_SLSH) && fdf->cam->menu == CLOSED)
+		set_alpha(key, fdf);
+	if (key == KB_STD_F1)
+		menu(fdf);
+	if (key == KB_STD_ESC)
+		x_close(fdf);
 	return (0);
 }
 
 int mouse_controls_press(int button, int x, int y, t_fdf *fdf)
 {
-	if (button == MS_SCRL_UP || button == MS_SCRL_DWN)
+	if ((button == MS_SCRL_UP || button == MS_SCRL_DWN) && fdf->cam->menu == CLOSED)
 		zoom(button, fdf);
-	if (button == MS_LFT_BTN || button == MS_RGHT_BTN)
+	if ((button == MS_LFT_BTN || button == MS_RGHT_BTN) && fdf->cam->menu == CLOSED)
 		key_press(button, x, y, fdf, YES);
 	return (0);
 }
