@@ -24,7 +24,7 @@ I_MLX = -I /usr/local/include
 
 I_FDF = -I sources/includes/
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 

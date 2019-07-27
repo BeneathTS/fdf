@@ -9,7 +9,7 @@ static int get_color(t_fdf *fdf, int x, int y, char flag)
 	return (fdf->cam->std_color);
 }
 
-void set_point_to_addr(t_fdf *fdf, int e_x, int e_y, int color)
+static void set_point_to_addr(t_fdf *fdf, int e_x, int e_y, int color)
 {
 	int ct;
 

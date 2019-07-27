@@ -57,7 +57,6 @@ typedef struct		s_camera
 	float			angle_x;
 	float			angle_y;
 	float			angle_z;
-	int				algo_type;
 	int				std_color;
 	char			prj;
 	long long int	zoom;
