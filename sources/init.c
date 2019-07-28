@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:25:35 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:34:36 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-static t_camera *cam_init()
+static t_camera	*cam_init(void)
 {
 	t_camera *cam;
 
@@ -20,7 +32,7 @@ static t_camera *cam_init()
 	return (cam);
 }
 
-static t_map *map_init()
+static t_map	*map_init(void)
 {
 	t_map *map;
 
@@ -32,7 +44,7 @@ static t_map *map_init()
 	return (map);
 }
 
-static t_draw *draw_init()
+static t_draw	*draw_init(void)
 {
 	t_draw *draw;
 
@@ -41,7 +53,7 @@ static t_draw *draw_init()
 	return (draw);
 }
 
-static t_cntrls *cntrls_init()
+static t_cntrls	*cntrls_init(void)
 {
 	t_cntrls *cntrls;
 
@@ -49,11 +61,11 @@ static t_cntrls *cntrls_init()
 		return (NULL);
 	cntrls->rght_prssd = NO;
 	cntrls->lft_prssd = NO;
-	cntrls->RGB = R;
+	cntrls->rgb = R;
 	return (cntrls);
 }
 
-void fdf_init(t_fdf *fdf)
+void			fdf_init(t_fdf *fdf)
 {
 	if (!(fdf->map = map_init()))
 		terminate(NO_MEMRY_ERROR, fdf);
@@ -69,5 +81,6 @@ void fdf_init(t_fdf *fdf)
 		terminate(NO_MEMRY_ERROR, fdf);
 	if (!(fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT)))
 		terminate(NO_MEMRY_ERROR, fdf);
-	fdf->data_addr = mlx_get_data_addr(fdf->img, &fdf->bts_pr_pxl, &fdf->sz_ln, &fdf->endian);
+	fdf->data_addr = mlx_get_data_addr(fdf->img, &fdf->bts_pr_pxl,
+	&fdf->sz_ln, &fdf->endian);
 }

@@ -28,7 +28,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
-.PHONY: all lib clean fclean re
+.PHONY: all lib clean fclean re norm
 
 all: $(NAME)
 
@@ -46,3 +46,6 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+norm:
+	norminette $(SRCS)

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_controls.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:26:26 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:34:17 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-void zoom(int key, t_fdf *fdf)
+void	zoom(int key, t_fdf *fdf)
 {
 	if (key == KB_NUM_PLUS ||
 		key == KB_STD_PLUS ||
@@ -15,7 +27,7 @@ void zoom(int key, t_fdf *fdf)
 	ft_draw(fdf);
 }
 
-void move(int key, t_fdf *fdf)
+void	move(int key, t_fdf *fdf)
 {
 	if (key == KB_KEY_LEFT)
 		fdf->cam->x_offset -= 15;
@@ -28,7 +40,7 @@ void move(int key, t_fdf *fdf)
 	ft_draw(fdf);
 }
 
-void change_projection(int key, t_fdf *fdf)
+void	change_projection(int key, t_fdf *fdf)
 {
 	if (key == KB_KEY_I)
 		fdf->cam->prj = ISO;
@@ -40,7 +52,7 @@ void change_projection(int key, t_fdf *fdf)
 	ft_draw(fdf);
 }
 
-void change_z(int key, t_fdf *fdf)
+void	change_z(int key, t_fdf *fdf)
 {
 	if (key == KB_KEY_Z_PLS)
 		fdf->cam->z_offset += 0.3;
@@ -53,19 +65,22 @@ void change_z(int key, t_fdf *fdf)
 	ft_draw(fdf);
 }
 
-void change_color(t_fdf *fdf)
+void	change_color(t_fdf *fdf)
 {
-	if (fdf->cntrls->RGB == R && (fdf->cam->std_color >> 8) != 0xFF)
-		fdf->cam->std_color += ((fdf->cam->std_color & (0xFF << 8)) < (0xFF << 8) ? 0x000500 : -0x050000);
-	else if (fdf->cntrls->RGB == R && (fdf->cam->std_color >> 8) == 0xFF)
-		fdf->cntrls->RGB = G;
-	if (fdf->cntrls->RGB == G && fdf->cam->std_color != 0xFF)
-		fdf->cam->std_color += ((fdf->cam->std_color & 0xFF) < 0xFF ? 0x000005 : -0x000500);
-	else if (fdf->cntrls->RGB == G && fdf->cam->std_color == 0xFF)
-		fdf->cntrls->RGB = B;
-	if (fdf->cntrls->RGB == B && fdf->cam->std_color != (0xFF << 16))
-		fdf->cam->std_color += ((fdf->cam->std_color & (0xFF << 16)) < (0xFF << 16) ? 0x050000 : -0x000005);
-	else if (fdf->cntrls->RGB == B && fdf->cam->std_color == (0xFF << 16))
-		fdf->cntrls->RGB = R;
+	if (fdf->cntrls->rgb == R && (fdf->cam->std_color >> 8) != 0xFF)
+		fdf->cam->std_color += ((fdf->cam->std_color & (0xFF << 8)) <
+		(0xFF << 8) ? 0x000500 : -0x050000);
+	else if (fdf->cntrls->rgb == R && (fdf->cam->std_color >> 8) == 0xFF)
+		fdf->cntrls->rgb = G;
+	if (fdf->cntrls->rgb == G && fdf->cam->std_color != 0xFF)
+		fdf->cam->std_color += ((fdf->cam->std_color & 0xFF) <
+		0xFF ? 0x000005 : -0x000500);
+	else if (fdf->cntrls->rgb == G && fdf->cam->std_color == 0xFF)
+		fdf->cntrls->rgb = B;
+	if (fdf->cntrls->rgb == B && fdf->cam->std_color != (0xFF << 16))
+		fdf->cam->std_color += ((fdf->cam->std_color & (0xFF << 16)) <
+		(0xFF << 16) ? 0x050000 : -0x000005);
+	else if (fdf->cntrls->rgb == B && fdf->cam->std_color == (0xFF << 16))
+		fdf->cntrls->rgb = R;
 	ft_draw(fdf);
 }

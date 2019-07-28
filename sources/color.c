@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:26:03 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:26:04 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-int read_color(char *line)
+int	read_color(char *line)
 {
 	int ct;
 	int num;
@@ -21,7 +33,7 @@ int read_color(char *line)
 	return (num);
 }
 
-int get_values(char *line, t_fdf *fdf, int x, int y)
+int	get_values(char *line, t_fdf *fdf, int x, int y)
 {
 	char **splitted;
 
@@ -30,7 +42,7 @@ int get_values(char *line, t_fdf *fdf, int x, int y)
 	fdf->map->coords[y][x] = new_coordinate(fdf);
 	fdf->map->coords[y][x]->z = ft_atoi(splitted[0]);
 	free(splitted[0]);
-	if(splitted[1])
+	if (splitted[1])
 	{
 		fdf->map->coords[y][x]->color = read_color(splitted[1]);
 		free(splitted[1]);
@@ -38,7 +50,7 @@ int get_values(char *line, t_fdf *fdf, int x, int y)
 		{
 			free(splitted[2]);
 			free(splitted);
-			return(ERROR);
+			return (ERROR);
 		}
 	}
 	else

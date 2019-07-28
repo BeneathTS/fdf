@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse_controls.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:26:39 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:26:40 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-void key_press(int button, int x, int y, t_fdf *fdf, char flag)
+void	key_press(int button, int x, int y, t_fdf *fdf)
 {
 	if (button == MS_LFT_BTN)
-		fdf->cntrls->lft_prssd = flag;
+		fdf->cntrls->lft_prssd = (fdf->cntrls->lft_prssd == YES ? NO : YES);
 	if (button == MS_RGHT_BTN)
-		fdf->cntrls->rght_prssd = flag;
-	if (flag == YES)
+		fdf->cntrls->rght_prssd = (fdf->cntrls->rght_prssd == YES ? NO : YES);
+	if (fdf->cntrls->rght_prssd == YES || fdf->cntrls->lft_prssd == YES)
 	{
 		fdf->cntrls->strt_x = x;
 		fdf->cntrls->strt_y = y;
@@ -15,7 +27,7 @@ void key_press(int button, int x, int y, t_fdf *fdf, char flag)
 	}
 }
 
-void mouse_move(int x, int y, t_fdf *fdf)
+void	mouse_move(int x, int y, t_fdf *fdf)
 {
 	fdf->cam->x_offset -= fdf->cntrls->strt_x - x - fdf->cntrls->prev_x;
 	fdf->cam->y_offset -= fdf->cntrls->strt_y - y - fdf->cntrls->prev_y;
@@ -24,7 +36,7 @@ void mouse_move(int x, int y, t_fdf *fdf)
 	ft_draw(fdf);
 }
 
-void mouse_rotate(int x, int y, t_fdf *fdf)
+void	mouse_rotate(int x, int y, t_fdf *fdf)
 {
 	int num1;
 	int num2;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   controls.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:28:15 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:28:38 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CONTROLS_H
 # define CONTROLS_H
 
@@ -52,7 +64,7 @@ typedef struct		s_cntrls
 	int				strt_y;
 	int				prev_x;
 	int				prev_y;
-	int				RGB;
+	int				rgb;
 }					t_cntrls;
 
 #endif

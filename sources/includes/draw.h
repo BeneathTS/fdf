@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:27:13 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:29:49 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DRAW_H
 # define DRAW_H
 
@@ -61,10 +73,9 @@ typedef struct		s_camera
 	char			prj;
 	long long int	zoom;
 	long long int	x_offset;
-	long long int 	y_offset;
+	long long int	y_offset;
 	float			z_offset;
 	char			menu;
 }					t_camera;
-
 
 #endif

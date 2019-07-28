@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_coordinates.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:26:20 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:26:21 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-t_point	*new_coordinate(t_fdf *fdf)
+t_point			*new_coordinate(t_fdf *fdf)
 {
 	t_point *new;
 
@@ -9,19 +21,21 @@ t_point	*new_coordinate(t_fdf *fdf)
 	return (new);
 }
 
-static void new_map(t_fdf *fdf, int fd)
+static void		new_map(t_fdf *fdf, int fd)
 {
 	int ct;
 
 	ct = -1;
-	if (!(fdf->map->coords = (t_point***)malloc(sizeof(t_point**) * (fdf->map->height + 1))))
+	if (!(fdf->map->coords =
+	(t_point***)malloc(sizeof(t_point**) * (fdf->map->height + 1))))
 	{
 		close(fd);
 		terminate(NO_MEMRY_ERROR, fdf);
 	}
 	while (++ct < fdf->map->height)
 	{
-		if (!(fdf->map->coords[ct] = (t_point**)malloc(sizeof(t_point*) * (fdf->map->width + 1))))
+		if (!(fdf->map->coords[ct] =
+		(t_point**)malloc(sizeof(t_point*) * (fdf->map->width + 1))))
 		{
 			close(fd);
 			terminate(NO_MEMRY_ERROR, fdf);
@@ -31,11 +45,11 @@ static void new_map(t_fdf *fdf, int fd)
 	fdf->map->coords[ct] = NULL;
 }
 
-static int ft_convert(char *line, t_fdf *fdf, int y)
+static int		ft_convert(char *line, t_fdf *fdf, int y)
 {
-	int ct;
-	char **splitted;
-	int status;
+	int		ct;
+	char	**splitted;
+	int		status;
 
 	if (!(splitted = ft_strsplit(line, ' ')))
 		return (ERROR);
@@ -51,11 +65,11 @@ static int ft_convert(char *line, t_fdf *fdf, int y)
 	return (status == ERROR ? ERROR : SUCCESS);
 }
 
-static void read_coordinates(t_fdf *fdf, int fd)
+static void		read_coordinates(t_fdf *fdf, int fd)
 {
-	int ct;
-	char *line;
-	int y;
+	int		ct;
+	char	*line;
+	int		y;
 
 	y = 0;
 	while ((ct = get_next_line(fd, &line)) == READING)
@@ -71,7 +85,7 @@ static void read_coordinates(t_fdf *fdf, int fd)
 	free(line);
 }
 
-void	get_coordinates(char **argv, t_fdf *fdf)
+void			get_coordinates(char **argv, t_fdf *fdf)
 {
 	int fd;
 

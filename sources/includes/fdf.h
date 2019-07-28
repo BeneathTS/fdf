@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:28:11 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:29:06 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -36,7 +48,7 @@ typedef struct		s_fdf
 	void			*mlx;
 	void			*win;
 	void			*img;
-	char 			*data_addr;
+	char			*data_addr;
 	int				bts_pr_pxl;
 	int				sz_ln;
 	int				endian;
@@ -58,7 +70,7 @@ void				get_coordinates(char **argv, t_fdf *fdf);
 int					get_values(char *line, t_fdf *fdf, int x, int y);
 void				terminate(int flag, t_fdf *fdf);
 
-void				key_press(int button, int x, int y, t_fdf *fdf, char flag);
+void				key_press(int button, int x, int y, t_fdf *fdf);
 void				change_color(t_fdf *fdf);
 void				change_projection(int key, t_fdf *fdf);
 void				change_z(int key, t_fdf *fdf);
@@ -70,5 +82,6 @@ void				mouse_rotate(int x, int y, t_fdf *fdf);
 void				set_alpha(int key, t_fdf *fdf);
 void				menu(t_fdf *fdf);
 void				draw_menu(t_fdf *fdf);
+int					x_close(t_fdf *fdf);
 // int fill_grad(int s_clr, int f_clr, int s_x, int f_x, int ct);
 #endif

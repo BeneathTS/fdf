@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:25:32 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:25:33 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-static void free_mem(t_fdf *fdf)
+static void	free_mem(t_fdf *fdf)
 {
 	free((void*)fdf->cam);
 	free((void*)fdf->map);
@@ -13,7 +25,7 @@ static void free_mem(t_fdf *fdf)
 	mlx_destroy_window(fdf->mlx, fdf->win);
 }
 
-void terminate(int flag, t_fdf *fdf)
+void		terminate(int flag, t_fdf *fdf)
 {
 	if (flag == NO_MEMRY_ERROR)
 		errno = ENOMEM;
@@ -33,7 +45,7 @@ void terminate(int flag, t_fdf *fdf)
 	exit(flag);
 }
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_fdf	fdf;
 

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 19:25:23 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/07/28 19:25:23 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-static int check_file_format_n_args(int ct, char **argv, t_fdf *fdf)
+static int		check_file_format_n_args(int ct, char **argv, t_fdf *fdf)
 {
 	int fd;
 
@@ -22,10 +34,10 @@ static int check_file_format_n_args(int ct, char **argv, t_fdf *fdf)
 	return (fd);
 }
 
-static int ft_convert(char *line, t_fdf *fdf)
+static int		ft_convert(char *line, t_fdf *fdf)
 {
-	int ct;
-	char **splitted;
+	int		ct;
+	char	**splitted;
 
 	if (!(splitted = ft_strsplit(line, ' ')))
 		return (ERROR);
@@ -39,10 +51,10 @@ static int ft_convert(char *line, t_fdf *fdf)
 	return (SUCCESS);
 }
 
-static void ft_writer(int fd, t_fdf *fdf)
+static void		ft_writer(int fd, t_fdf *fdf)
 {
-	int status;
-	char *line;
+	int		status;
+	char	*line;
 
 	while ((status = get_next_line(fd, &line)) == READING)
 	{
@@ -60,7 +72,7 @@ static void ft_writer(int fd, t_fdf *fdf)
 		terminate(MAP_READ_ERROR, fdf);
 }
 
-void read_map(int argc, char **argv, t_fdf *fdf)
+void			read_map(int argc, char **argv, t_fdf *fdf)
 {
 	int fd;
 
