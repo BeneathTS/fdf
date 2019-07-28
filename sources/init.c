@@ -56,18 +56,18 @@ static t_cntrls *cntrls_init()
 void fdf_init(t_fdf *fdf)
 {
 	if (!(fdf->map = map_init()))
-		terminate(NO_MEMRY_ERROR, fdf, NO);
+		terminate(NO_MEMRY_ERROR, fdf);
 	if (!(fdf->cam = cam_init()))
-		terminate(NO_MEMRY_ERROR, fdf, NO);
+		terminate(NO_MEMRY_ERROR, fdf);
 	if (!(fdf->draw = draw_init()))
-		terminate(NO_MEMRY_ERROR, fdf, NO);
+		terminate(NO_MEMRY_ERROR, fdf);
 	if (!(fdf->cntrls = cntrls_init()))
-		terminate(NO_MEMRY_ERROR, fdf, NO);
+		terminate(NO_MEMRY_ERROR, fdf);
 	if (!(fdf->mlx = mlx_init()))
-		terminate(NO_MEMRY_ERROR, fdf, NO);
+		terminate(NO_MEMRY_ERROR, fdf);
 	if (!(fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "fdf")))
-		terminate(NO_MEMRY_ERROR, fdf, NO);
+		terminate(NO_MEMRY_ERROR, fdf);
 	if (!(fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT)))
-		terminate(NO_MEMRY_ERROR, fdf, NO);
+		terminate(NO_MEMRY_ERROR, fdf);
 	fdf->data_addr = mlx_get_data_addr(fdf->img, &fdf->bts_pr_pxl, &fdf->sz_ln, &fdf->endian);
 }

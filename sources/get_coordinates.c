@@ -5,7 +5,7 @@ t_point	*new_coordinate(t_fdf *fdf)
 	t_point *new;
 
 	if (!(new = (t_point*)malloc(sizeof(t_point))))
-		terminate(NO_MEMRY_ERROR, fdf, fdf->map->height);
+		terminate(NO_MEMRY_ERROR, fdf);
 	return (new);
 }
 
@@ -14,17 +14,17 @@ static void new_map(t_fdf *fdf, int fd)
 	int ct;
 
 	ct = -1;
-	if (!(fdf->map->coords = (t_point**)malloc(sizeof(t_point*) * (fdf->map->height + 1))))
+	if (!(fdf->map->coords = (t_point***)malloc(sizeof(t_point**) * (fdf->map->height + 1))))
 	{
 		close(fd);
-		terminate(NO_MEMRY_ERROR, fdf, NO);
+		terminate(NO_MEMRY_ERROR, fdf);
 	}
 	while (++ct < fdf->map->height)
 	{
-		if (!(fdf->map->coords[ct] = (t_point*)malloc(sizeof(t_point) * (fdf->map->width + 1))))
+		if (!(fdf->map->coords[ct] = (t_point**)malloc(sizeof(t_point*) * (fdf->map->width + 1))))
 		{
 			close(fd);
-			terminate(NO_MEMRY_ERROR, fdf, ct);
+			terminate(NO_MEMRY_ERROR, fdf);
 		}
 		ft_bzero(fdf->map->coords[ct], fdf->map->width + 1);
 	}
@@ -64,7 +64,7 @@ static void read_coordinates(t_fdf *fdf, int fd)
 		{
 			free(line);
 			close(fd);
-			terminate(MAP_READ_ERROR, fdf, fdf->map->height);
+			terminate(MAP_READ_ERROR, fdf);
 		}
 		free(line);
 	}
@@ -76,7 +76,7 @@ void	get_coordinates(char **argv, t_fdf *fdf)
 	int fd;
 
 	if ((fd = open(FILE_NAME, O_RDONLY)) == ERROR)
-		terminate(FILE_ERROR, fdf, NO);
+		terminate(FILE_ERROR, fdf);
 	new_map(fdf, fd);
 	read_coordinates(fdf, fd);
 }

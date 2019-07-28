@@ -2,10 +2,10 @@
 
 static int get_color(t_fdf *fdf, int x, int y, char flag)
 {
-	if (flag == X && fdf->map->coords[y][x + 1].color == fdf->map->coords[y][x].color)
- 		return (fdf->map->coords[y][x].color == EMPTY ? fdf->cam->std_color : fdf->map->coords[y][x].color);
- 	if (flag == Y && fdf->map->coords[y + 1][x].color == fdf->map->coords[y][x].color)
- 		return (fdf->map->coords[y][x].color == EMPTY ? fdf->cam->std_color : fdf->map->coords[y][x].color);
+	if (flag == X && fdf->map->coords[y][x + 1]->color == fdf->map->coords[y][x]->color)
+ 		return (fdf->map->coords[y][x]->color == EMPTY ? fdf->cam->std_color : fdf->map->coords[y][x]->color);
+ 	if (flag == Y && fdf->map->coords[y + 1][x]->color == fdf->map->coords[y][x]->color)
+ 		return (fdf->map->coords[y][x]->color == EMPTY ? fdf->cam->std_color : fdf->map->coords[y][x]->color);
 	return (fdf->cam->std_color);
 }
 

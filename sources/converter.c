@@ -42,10 +42,9 @@ void z_rotate (t_fdf *fdf, int *x, int *y)
 
 void converter(t_fdf *fdf, t_e_point *e_point, int x, int y)
 {
-
 	e_point->x = (x - fdf->map->width / 2) * fdf->cam->zoom;
     e_point->y = (y - fdf->map->height / 2) * fdf->cam->zoom;
-	e_point->z = fdf->map->coords[y][x].z * fdf->cam->zoom / fdf->cam->z_offset;
+	e_point->z = fdf->map->coords[y][x]->z * fdf->cam->zoom / fdf->cam->z_offset;
 	x_rotate(fdf, &e_point->y, &e_point->z);
 	y_rotate(fdf, &e_point->x, &e_point->z);
 	z_rotate(fdf, &e_point->x, &e_point->y);

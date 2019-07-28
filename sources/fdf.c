@@ -1,13 +1,7 @@
 #include "fdf.h"
 
-static void free_mem(t_fdf *fdf, int num)
+static void free_mem(t_fdf *fdf)
 {
-	int ct;
-
-	ct = -1;
-	while (num != 0 && ++ct < num)
-		free(fdf->map->coords[ct]);
-	free((void*)fdf->map->coords);
 	free((void*)fdf->cam);
 	free((void*)fdf->map);
 	free((void*)fdf->draw);
@@ -19,7 +13,7 @@ static void free_mem(t_fdf *fdf, int num)
 	mlx_destroy_window(fdf->mlx, fdf->win);
 }
 
-void terminate(int flag, t_fdf *fdf, int ct)
+void terminate(int flag, t_fdf *fdf)
 {
 	if (flag == NO_MEMRY_ERROR)
 		errno = ENOMEM;
@@ -35,7 +29,7 @@ void terminate(int flag, t_fdf *fdf, int ct)
 		errno = ENOENT;
 	if (flag == NO_MEMRY_ERROR || flag == TOO_MANY_FILES || flag == FILE_ERROR)
 		perror("\033[1;31mError\033[0m");
-	free_mem(fdf, ct);
+	free_mem(fdf);
 	exit(flag);
 }
 

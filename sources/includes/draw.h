@@ -40,7 +40,7 @@ typedef struct		s_map
 {
 	int				width;
 	int				height;
-	t_point			**coords;
+	t_point			***coords;
 }					t_map;
 
 typedef struct		s_draw

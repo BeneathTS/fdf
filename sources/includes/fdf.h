@@ -20,8 +20,8 @@
 
 # define FILE_NAME argv[1]
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define EXIT 0
 # define NO_MEMRY_ERROR 1
@@ -47,8 +47,7 @@ typedef struct		s_fdf
 }					t_fdf;
 
 void				read_map(int argc, char **argv, t_fdf *fdf);
-t_point				*new_coordinate();
-void				ft_free_matrix(t_map **map);
+t_point				*new_coordinate(t_fdf *fdf);
 int					key_controls(int key, t_fdf *fdf);
 void				fdf_init(t_fdf *fdf);
 void				ft_draw(t_fdf *fdf);
@@ -57,7 +56,7 @@ int					read_color(char *line);
 void				converter(t_fdf *fdf, t_e_point *e_point, int x, int y);
 void				get_coordinates(char **argv, t_fdf *fdf);
 int					get_values(char *line, t_fdf *fdf, int x, int y);
-void				terminate(int flag, t_fdf *fdf, int ct);
+void				terminate(int flag, t_fdf *fdf);
 
 void				key_press(int button, int x, int y, t_fdf *fdf, char flag);
 void				change_color(t_fdf *fdf);

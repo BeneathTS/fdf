@@ -2,7 +2,7 @@
 
 static int x_close(t_fdf *fdf)
 {
-	terminate(EXIT, fdf, fdf->map->height);
+	terminate(EXIT, fdf);
 	return (0);
 }
 
