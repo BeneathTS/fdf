@@ -21,23 +21,30 @@ int read_color(char *line)
 	return (num);
 }
 
-void get_values(char *line, t_fdf *fdf, int x, int y)
+int get_values(char *line, t_fdf *fdf, int x, int y)
 {
 	char **splitted;
 
-	splitted = ft_strsplit(line, ',');
-
-	fdf->map->coords[y][x] = *new_coordinate(fdf);
-	fdf->map->coords[y][x].z = ft_atoi(splitted[0]);
+	if (!(splitted = ft_strsplit(line, ',')))
+		return (ERROR);
+	fdf->map->coords[y][x] = new_coordinate(fdf);
+	fdf->map->coords[y][x]->z = ft_atoi(splitted[0]);
 	free(splitted[0]);
 	if(splitted[1])
 	{
-		fdf->map->coords[y][x].color = read_color(splitted[1]);
+		fdf->map->coords[y][x]->color = read_color(splitted[1]);
 		free(splitted[1]);
+		if (splitted[2])
+		{
+			free(splitted[2]);
+			free(splitted);
+			return(ERROR);
+		}
 	}
 	else
-		fdf->map->coords[y][x].color = EMPTY;
+		fdf->map->coords[y][x]->color = EMPTY;
 	free(splitted);
+	return (SUCCESS);
 }
 
 // int fill_grad(int s_clr, int f_clr, int s_x int f_x, int ct)

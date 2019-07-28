@@ -1,9 +1,9 @@
 #include "fdf.h"
 
-static int x_close(void *param)
+static int x_close(t_fdf *fdf)
 {
-	(void)param;
-	exit(0);
+	terminate(EXIT, fdf);
+	return (0);
 }
 
 int key_controls(int key, t_fdf *fdf)
