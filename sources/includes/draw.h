@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 19:27:13 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/07/28 19:29:49 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/07/28 20:19:18 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_draw
 {
 	int				x;
 	int				y;
+	double			precent;
 	t_e_point		strt;
 	t_e_point		fnsh;
 }					t_draw;

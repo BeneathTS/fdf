@@ -6,19 +6,19 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 19:26:03 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/07/28 19:26:04 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/07/28 21:23:05 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	read_color(char *line)
+int		read_color(char *line)
 {
 	int ct;
 	int num;
 
 	if (line[0] != '0' && line[1] != 'x')
-		return (EMPTY);
+		return (ERROR);
 	ct = 1;
 	num = 0x0;
 	while (line[++ct])
@@ -33,9 +33,10 @@ int	read_color(char *line)
 	return (num);
 }
 
-int	get_values(char *line, t_fdf *fdf, int x, int y)
+int		get_values(char *line, t_fdf *fdf, int x, int y)
 {
-	char **splitted;
+	char	**splitted;
+	int		ct;
 
 	if (!(splitted = ft_strsplit(line, ',')))
 		return (ERROR);
@@ -44,14 +45,15 @@ int	get_values(char *line, t_fdf *fdf, int x, int y)
 	free(splitted[0]);
 	if (splitted[1])
 	{
-		fdf->map->coords[y][x]->color = read_color(splitted[1]);
-		free(splitted[1]);
-		if (splitted[2])
+		if ((fdf->map->coords[y][x]->color = read_color(splitted[1]))
+		== ERROR || splitted[2])
 		{
-			free(splitted[2]);
-			free(splitted);
+			ct = 2;
+			while (splitted[ct])
+				free(splitted[ct++]);
 			return (ERROR);
 		}
+		free(splitted[1]);
 	}
 	else
 		fdf->map->coords[y][x]->color = EMPTY;
@@ -59,16 +61,38 @@ int	get_values(char *line, t_fdf *fdf, int x, int y)
 	return (SUCCESS);
 }
 
-// int fill_grad(int s_clr, int f_clr, int s_x int f_x, int ct)
-// {
-// 	int r;
-// 	int g;
-// 	int b;
-//
-// 	// x = (ct - s_x)/(f_x - s_x)
-//
-// 	r = (ct - s_x)/(f_x - s_x) * (s_clr & (0xFF >> 16) + (ct - s_x)/(f_x - s_x) * (f_clr & (0xFF >> 16));
-// 	g = (ct - s_x)/(f_x - s_x) * (s_clr & (0xFF >> 8)) + (ct - s_x)/(f_x - s_x) * (f_clr & (0xFF >> 8));
-// 	b = (ct - s_x)/(f_x - s_x) * (s_clr & 0xFF) + (ct - s_x)/(f_x - s_x) * (f_clr & 0xFF);
-// 	return ((r << 16) | (g << 8) | b);
-// }
+double	get_precent(t_fdf *fdf, t_e_point p, t_e_point d)
+{
+	double placement;
+	double distance;
+	double precentage;
+
+	if (d.x > d.y)
+	{
+		placement = p.x - fdf->draw->strt.x;
+		distance = fdf->draw->fnsh.x - fdf->draw->strt.x;
+		precentage = (distance == 0 ? 1.0 : (placement / distance));
+	}
+	else
+	{
+		placement = p.y - fdf->draw->strt.y;
+		distance = fdf->draw->fnsh.y - fdf->draw->strt.y;
+		precentage = (distance == 0 ? 1.0 : (placement / distance));
+	}
+	return (precentage);
+}
+
+int		fill_grad(t_fdf *fdf, int s_clr, int f_clr)
+{
+	int r;
+	int g;
+	int b;
+
+	r = (int)((1 - fdf->draw->precent) * ((s_clr >> 16) & 0xFF) +
+	(fdf->draw->precent) * ((f_clr >> 16) & 0xFF));
+	g = (int)((1 - fdf->draw->precent) * ((s_clr >> 8) & 0xFF) +
+	(fdf->draw->precent) * ((f_clr >> 8) & 0xFF));
+	b = (int)((1 - fdf->draw->precent) * (s_clr & 0xFF) +
+	(fdf->draw->precent) * (f_clr & 0xFF));
+	return ((r << 16) | (g << 8) | b);
+}

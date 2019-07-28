@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 19:28:11 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/07/28 19:29:06 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/07/28 20:36:47 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void				set_alpha(int key, t_fdf *fdf);
 void				menu(t_fdf *fdf);
 void				draw_menu(t_fdf *fdf);
 int					x_close(t_fdf *fdf);
-// int fill_grad(int s_clr, int f_clr, int s_x, int f_x, int ct);
+int					fill_grad(t_fdf *fdf, int s_clr, int f_clr);
+double				get_precent(t_fdf *fdf, t_e_point p, t_e_point d);
 #endif

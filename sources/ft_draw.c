@@ -6,24 +6,38 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 19:25:28 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/07/28 19:25:29 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/07/28 21:11:58 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		get_color(t_fdf *fdf, int x, int y, char flag)
+static int		get_color(t_fdf *fdf, t_e_point p, t_e_point d, char flag)
 {
+	int s_color;
+	int	f_color;
+
+	s_color = fdf->map->coords[fdf->draw->y][fdf->draw->x]->color == EMPTY ?
+	fdf->cam->std_color :
+	fdf->map->coords[fdf->draw->y][fdf->draw->x]->color;
 	if (flag == X &&
-	fdf->map->coords[y][x + 1]->color == fdf->map->coords[y][x]->color)
-		return (fdf->map->coords[y][x]->color == EMPTY ?
-		fdf->cam->std_color : fdf->map->coords[y][x]->color);
+	fdf->map->coords[fdf->draw->y][fdf->draw->x + 1]->color ==
+	fdf->map->coords[fdf->draw->y][fdf->draw->x]->color)
+		return (s_color);
 	else if (flag == Y &&
-	fdf->map->coords[y + 1][x]->color == fdf->map->coords[y][x]->color)
-		return (fdf->map->coords[y][x]->color == EMPTY ?
-		fdf->cam->std_color : fdf->map->coords[y][x]->color);
-	else
-		return (fdf->cam->std_color);
+	fdf->map->coords[fdf->draw->y + 1][fdf->draw->x]->color ==
+	fdf->map->coords[fdf->draw->y][fdf->draw->x]->color)
+		return (s_color);
+	if (flag == X)
+		f_color = fdf->map->coords[fdf->draw->y][fdf->draw->x + 1]->color
+	== EMPTY ? fdf->cam->std_color :
+	fdf->map->coords[fdf->draw->y][fdf->draw->x + 1]->color;
+	if (flag == Y)
+		f_color = fdf->map->coords[fdf->draw->y + 1][fdf->draw->x]->color
+	== EMPTY ? fdf->cam->std_color :
+	fdf->map->coords[fdf->draw->y + 1][fdf->draw->x]->color;
+	fdf->draw->precent = get_precent(fdf, p, d);
+	return (fill_grad(fdf, s_color, f_color));
 }
 
 static void		set_point_to_addr(t_fdf *fdf, int e_x, int e_y, int color)
@@ -45,24 +59,25 @@ static void		bresenham_algo(t_fdf *fdf, t_e_point s, t_e_point f, char flag)
 	t_e_point	d;
 	t_e_point	sgn;
 	int			err[2];
+	t_e_point	p;
 
 	d.x = ft_abs(f.x - s.x);
 	d.y = ft_abs(f.y - s.y);
 	sgn.x = 0 < (f.x - s.x) ? 1 : -1;
 	sgn.y = 0 < (f.y - s.y) ? 1 : -1;
 	err[0] = d.x - d.y;
-	while (s.x != f.x || s.y != f.y)
+	p = s;
+	while (p.x != f.x || p.y != f.y)
 	{
-		set_point_to_addr(fdf, s.x, s.y,
-		get_color(fdf, fdf->draw->x, fdf->draw->y, flag));
+		set_point_to_addr(fdf, p.x, p.y, get_color(fdf, p, d, flag));
 		if ((err[1] = 2 * err[0]) > -d.y)
 		{
-			s.x += sgn.x;
+			p.x += sgn.x;
 			err[0] -= d.y;
 		}
 		if (err[1] < d.x)
 		{
-			s.y += sgn.y;
+			p.y += sgn.y;
 			err[0] += d.x;
 		}
 	}
