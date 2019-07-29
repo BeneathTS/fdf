@@ -1,18 +1,21 @@
 NAME = fdf
 
-SRCS =	sources/fdf.c \
-		sources/read_map.c \
-		sources/ft_draw.c \
-		sources/init.c \
-		sources/hooks.c \
-		sources/key_controls.c \
-		sources/color.c \
-		sources/get_coordinates.c \
-		sources/converter.c \
-		sources/mouse_controls.c \
-		sources/key_controls2.c \
-		sources/menu.c \
+SRCS =	fdf.c \
+		read_map.c \
+		ft_draw.c \
+		init.c \
+		hooks.c \
+		key_controls.c \
+		color.c \
+		get_coordinates.c \
+		converter.c \
+		mouse_controls.c \
+		key_controls2.c \
+		menu.c \
 
+OS = $(SRCS:.c=.o)
+
+SRCDIR = sources
 
 L_LIB = libft/libft.a
 
@@ -22,18 +25,23 @@ L_MLX = -L /usr/local/lib
 
 I_MLX = -I /usr/local/include
 
-I_FDF = -I sources/includes/
+I_FDF = -I sources/includes
 
 CFLAGS = -Wall -Wextra -Werror
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
+vpath %.c $(SRCDIR)
+
 .PHONY: all lib clean fclean re norm
 
-all: $(NAME)
+all: lib $(NAME)
 
-$(NAME): lib $(SRCS)
-	gcc $(CFLAGS) $(SRCS) $(L_LIB) $(L_MLX) $(I_FDF) $(I_LIB) $(I_MLX) $(MLXFLAGS) -o $(NAME)
+$(NAME): $(OS)
+	@gcc $(CFLAGS) $^ $(L_LIB) $(L_MLX) $(I_FDF) $(I_LIB) $(I_MLX) $(MLXFLAGS) -o $(NAME)
+
+$(OS): $(SRCS)
+	@gcc $(CFLAGS) -c $^ $(I_FDF) $(I_LIB) $(I_MLX)
 
 lib:
 	@make -C libft/
@@ -44,8 +52,6 @@ clean:
 fclean: clean
 	@make -C libft fclean
 	@rm -f $(NAME)
+	@rm -f $(OS)
 
 re: fclean all
-
-norm:
-	norminette $(SRCS)
